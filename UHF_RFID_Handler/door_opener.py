@@ -6,6 +6,7 @@ import serial
 
 from uhf_reader import UHFReader
 
+
 ser = serial.Serial(
   port='/dev/ttyUSB0',
   baudrate=57600,
@@ -56,28 +57,8 @@ def received_tid(response):
 
 def check_access(response):
   # TODO add communication with supervisor
-  return ok_in_db(uhf.parse_ext_read(response)['tid'])
+  pass
 
-
-def ok_in_db(tid):
-  # TODO remove
-  if tid.upper() == 'E2003412013CF20010D5B1060C11016A00055FFB':
-    time.sleep(1)
-    return True
-  return False
-
-
-def trigger_relay():
-  # TODO remove
-  print("triggered relay")
-  time.sleep(1)
-  print("closing relay")
-
-
-def open_gate():
-  # TODO remove
-  print("opening gate")
-  trigger_relay()
 
 
 def request_tid():
@@ -100,9 +81,8 @@ while i > 0:
     cmd = request_tid()
   elif received_tid(response):
     print("got tid")
-    if check_access(response):
-      open_gate()
-      break
+    check_access(response)
+    break
     else:
       cmd = uhf.single_tag_read()
 

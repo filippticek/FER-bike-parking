@@ -1,6 +1,6 @@
 import codecs
 import time
-from random import randint
+from gpiozero import DigitalInputDevice
 
 import serial
 
@@ -38,15 +38,6 @@ def read():
   return ''.join(data)
 
 
-def wait_for_motion():
-  i = 0
-  while True:
-    rand = randint(0, 100)
-    if rand > 95:
-      print("put tag")
-      return 50
-
-
 def received_epc(response):
   return uhf.parse_single_tag_response(response)['epc'] != ''
 
@@ -68,25 +59,30 @@ def request_tid():
   return uhf.ext_read(enum='0' + length, epc=epc)
 
 
-
-
-
-i = wait_for_motion()
-cmd = uhf.single_tag_read()
-while i > 0:
-  ser.write(cmd)
-  response = read()
-
-  if received_epc(response):
-    cmd = request_tid()
-  elif received_tid(response):
-    print("got tid")
-    check_access(response)
-    break
+def start_workflow():
+  cmd = uhf.single_tag_read()
+  i = 100
+  while i > 0:
+    ser.write(cmd)
+    response = read()
+  
+    if received_epc(response):
+      cmd = request_tid()
+    elif received_tid(response):
+      print("got tid")
+      check_access(response)
+      break
     else:
       cmd = uhf.single_tag_read()
+  
+    time.sleep(0.1)
+    i -= 1
+  
+  ser.close()
 
-  time.sleep(0.1)
-  i -= 1
 
-ser.close()
+
+pir = DigitalInputDevice(4, pull_up=False)
+
+while True:
+  pir.when_activated = start_workflow

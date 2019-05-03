@@ -1,12 +1,10 @@
 #!/usr/bin/python
-# PLACEHOLDER FOR THE SUPERVISOR APP
 
 # The supervisor app communicates with the handler apps (uhf rfid and student X card apps),
 # with the server to check if a card is allowed to open the door
 # and triggers the relay to open the door.
 
 # TODO add communication with the server
-# TODO add communication with the handler apps
 # TODO add relay triggering
 
 
@@ -16,24 +14,30 @@ import json
 import requests
 
 NFC = "nfc"
-RFID = "rfid"
+UHF = "uhf"
 
 urls = (
-    '/rfid', 'rfid',
+    '/uhf', 'uhf',
     '/nfc', 'nfc'
 )
 
-class rfid:
+class uhf:
     def POST(self):
         post_data = json.loads(web.data())
-        if check_database(post_data['type'], post_data['key']):
+        db_status = check_database(UHF, post_data['key'])
+        if db_status:
             open_door()
+
+        return db_status
 
 class nfc:
     def POST(self):
         post_data = json.loads(web.data())
-        if check_database(post_data['type'], post_data['key']):
+        db_status = check_database(NFC, post_data['key'])
+        if db_status:
             open_door()
+
+        return db_status
         
 
 
@@ -41,10 +45,10 @@ class nfc:
 def check_database(type="", key=""):
     if key == NFC and key:
         return request_nfc_access(key)
-    if key == RFID and key:
-        return request_rfid_access(key)
+    if key == UHF and key:
+        return request_uhf_access(key)
 
-    return False
+    return 500
 
 def request_nfc_access(key=""):
     if key:
@@ -52,7 +56,8 @@ def request_nfc_access(key=""):
         pass
     return r.status_code
 
-def request_rfid_access(key=""):
+def request_uhf_access(key=""):
+    print(key)
     if key:
         #r = requests.post(...)
         pass

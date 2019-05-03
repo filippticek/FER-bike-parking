@@ -52,7 +52,7 @@ def check_access(response):
 
 
 
-def request_tid():
+def request_tid(response):
   print("got epc")
   epc = uhf.parse_single_tag_response(response)['epc']
   length = hex(len(epc) // 4)[2:]
@@ -60,6 +60,7 @@ def request_tid():
 
 
 def start_workflow():
+  print("start")
   cmd = uhf.single_tag_read()
   i = 100
   while i > 0:
@@ -67,7 +68,7 @@ def start_workflow():
     response = read()
   
     if received_epc(response):
-      cmd = request_tid()
+      cmd = request_tid(response)
     elif received_tid(response):
       print("got tid")
       check_access(response)
@@ -77,12 +78,11 @@ def start_workflow():
   
     time.sleep(0.1)
     i -= 1
-  
-  ser.close()
-
 
 
 pir = DigitalInputDevice(4, pull_up=False)
 
 while True:
   pir.when_activated = start_workflow
+
+ser.close()

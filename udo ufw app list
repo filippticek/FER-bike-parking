@@ -1,0 +1,19 @@
+[0;1;32m●[0m apache2.service - The Apache HTTP Server
+   Loaded: loaded (/lib/systemd/system/apache2.service; enabled; vendor preset: enabled)
+  Drop-In: /lib/systemd/system/apache2.service.d
+           └─apache2-systemd.conf
+   Active: [0;1;32mactive (running)[0m since Tue 2019-05-07 15:05:57 CEST; 28min ago
+ Main PID: 14094 (apache2)
+    Tasks: 7 (limit: 4512)
+   CGroup: /system.slice/apache2.service
+           ├─14094 /usr/sbin/apache2 -k start
+           ├─14096 /usr/sbin/apache2 -k start
+           ├─14097 /usr/sbin/apache2 -k start
+           ├─14098 /usr/sbin/apache2 -k start
+           ├─14099 /usr/sbin/apache2 -k start
+           ├─14100 /usr/sbin/apache2 -k start
+           └─14285 /usr/sbin/apache2 -k start
+
+svi 07 15:05:57 lenovo systemd[1]: Starting The Apache HTTP Server...
+svi 07 15:05:57 lenovo apachectl[14090]: AH00558: apache2: Could not reliably determine the server's fully qualified domain name, using 127.0.1.1. Set the 'ServerName' directive globally to suppress this message
+svi 07 15:05:57 lenovo systemd[1]: Started The Apache HTTP Server.

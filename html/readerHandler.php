@@ -2,25 +2,23 @@
 
 $json = '{
     "reader": "nfc",
-    "id": "hdzd6e83idnd83e8ie3djr74"
+    "id": "hd989979zd6e83idnd83e8ie3djr74"
 }';
 
-$data = json_decode($json);
+$input = json_decode($json);
 
 echo $data->reader;
 echo "\n";
 echo $data->id;
 echo "\n";
-var_dump(http_response_code(200));
-
-
+//var_dump(http_response_code(200));
 
 
 
 // get the HTTP method, path and body of the request
 $method = $_SERVER['REQUEST_METHOD'];
-$request = explode('/', trim($_SERVER['PATH_INFO'],'/'));
-$input = json_decode(file_get_contents('php://input'),true);
+$request = explode('/', trim($_SERVER['PATH_INFO'],'/')); //url
+//$input = json_decode(file_get_contents('php://input'),true);
 
 // connect to the mysql database
 $link = mysqli_connect('localhost', 'user', 'pass', 'dbname');
@@ -45,28 +43,25 @@ for ($i=0;$i<count($columns);$i++) {
 }
 
 // create SQL based on HTTP method
-switch ($method) {
-  case 'GET':
-    $sql = "select * from `$table`".($key?" WHERE id=$key":''); break;
-  case 'PUT':
-    $sql = "update `$table` set $set where id=$key"; break;
-  case 'POST':
-    $sql = "insert into `$table` set $set"; break;
-  case 'DELETE':
-    $sql = "delete `$table` where id=$key"; break;
+if ($method == 'POST') {
+    $sql = "select count(*) from `$table`".($key?" WHERE id=$key":''); break;
+    $result = mysqli_query($link,$sql);
+}
+else {
+   $sql = null;
 }
 
-// excecute SQL statement
-$result = mysqli_query($link,$sql);
-
 // die if SQL statement failed
-if (!$result) {
-  http_response_code(404);
-  die(mysqli_error());
+if ($result==1) {
+  http_response_code(200);
+  //die(mysqli_error());
+}
+else {
+    http_response_code(401);
 }
 
 // print results, insert id or affected row count
-if ($method == 'GET') {
+if ($method == 'POST') {
   if (!$key) echo '[';
   for ($i=0;$i<mysqli_num_rows($result);$i++) {
     echo ($i>0?',':'').json_encode(mysqli_fetch_object($result));

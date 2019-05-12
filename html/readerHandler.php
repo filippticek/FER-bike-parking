@@ -7,21 +7,29 @@ $json = '{
 
 $input = json_decode($json);
 
-echo $data->reader;
+echo $input->reader;
 echo "\n";
-echo $data->id;
+echo $input->id;
 echo "\n";
 //var_dump(http_response_code(200));
 
 
 
 // get the HTTP method, path and body of the request
-$method = $_SERVER['REQUEST_METHOD'];
+if (isset ($_SERVER["REQUEST_METHOD"])){
+  echo "\nset";
+}
+else {
+  echo "not set";
+}
+
+$method = $_SERVER["REQUEST_METHOD"];
+$value = getenv('REQUEST_METHOD');
 $request = explode('/', trim($_SERVER['PATH_INFO'],'/')); //url
 //$input = json_decode(file_get_contents('php://input'),true);
 
 // connect to the mysql database
-$link = mysqli_connect('localhost', 'user', 'pass', 'dbname');
+$link = mysqli_connect('localhost', 'phpmyadmin', 'test', 'phpmyadmin');
 mysqli_set_charset($link,'utf8');
 
 // retrieve the table and key from the path
@@ -44,7 +52,7 @@ for ($i=0;$i<count($columns);$i++) {
 
 // create SQL based on HTTP method
 if ($method == 'POST') {
-    $sql = "select count(*) from `$table`".($key?" WHERE id=$key":''); break;
+    $sql = "select count(*) from `$table` WHERE id=$key";
     $result = mysqli_query($link,$sql);
 }
 else {
@@ -60,6 +68,8 @@ else {
     http_response_code(401);
 }
 
+http_response_code(401);
+var_dump(http_response_code());
 // print results, insert id or affected row count
 if ($method == 'POST') {
   if (!$key) echo '[';

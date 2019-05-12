@@ -29,17 +29,10 @@ $request = explode('/', trim($_SERVER['PATH_INFO'],'/')); //url
 //$input = json_decode(file_get_contents('php://input'),true);
 
 
-// die if SQL statement failed
-if ($result==1) {
-  http_response_code(200);
-  //die(mysqli_error());
-}
-else {
-    http_response_code(401);
-}
+
 
 http_response_code(401);
-echo "response code: "
+echo "response code: ";
 var_dump(http_response_code());
 
 ?>

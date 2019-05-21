@@ -22,13 +22,13 @@ class Server(BaseHTTPRequestHandler):
 
 def handle_nfc(url):
 	uid_len, uid = get_uid(url)
-	if uid_len is not 0:
+	if uid_len is not False:
 		send_response(uid_len, uid)
 
 def send_response(uid_len, uid):
 	serve = socket.socket(socket.AF_INET, socket.SOCKSTREAM)
 	serve.connect((SERVER_IP, SERVER_PORT))
-	response = 'uidLen=' + str(uidlen) + '&uid=' + uid + '&\r\n'
+	response = 'uidLen=' + str(uid_len) + '&uid=' + uid + '&\r\n'
 	serve.send(response.encode('utf-8'))
 	serve.close()
 
@@ -38,7 +38,7 @@ def get_uid(url):
 		uid_len = int(url[url.find("ulen") + 5])
 		uid_start = int(url.find("uid")) + 4
 		uid = url[uid_start:(uid_start + uid_len * 2)]
-		return (0, uid)
+		return (uid_len, uid)
 	else:
 		return (False, False)
 try:

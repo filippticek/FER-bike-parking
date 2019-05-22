@@ -25,6 +25,7 @@
 
 # DROP TABLE IF EXISTS `readerManagers`;
 CREATE DATABASE bikeParking;
+USE DATABASE bikeParking;
 
 CREATE TABLE `readerManagers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,

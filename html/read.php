@@ -15,7 +15,7 @@ if (isset($_POST['submit'])) {
   if ($result->num_rows > 0) {
       // output data of each row
       while ($row = mysqli_fetch_assoc($result)) {
-          echo "ID: " . $row["id"]. "; username: " . $row["username"];
+          echo "ID: " . $row["id"]. "; username: " . $row["username"] . "; is admin: " . $row["isadmin"] . "; is manager: " . $row["ismanager"];
           echo  nl2br (" \n ");
       }
   } else {

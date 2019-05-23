@@ -1,45 +1,34 @@
-<?php require "header.php"; ?>
-
-<?php
-
-/**
-  * Function to query information based on
-  * a parameter: in this case, location.
-  *
-  */
+<?php require "header.php";
 
 if (isset($_POST['submit'])) {
 
     require "config.php";
     require "common.php";
 
-  //  $connection = new PDO($dsn, $username, $password, $options);
+  $link = mysqli_connect('localhost', 'root', 'password', 'bikeParking');
+  mysqli_set_charset($link,'utf8');
+  $username = $_POST['username'];
 
+  $sql = "SELECT * FROM users WHERE username = '$username'";
+  $result = mysqli_query($link,$sql);
 
-$sql = "SELECT * FROM test.admin WHERE 'username' LIKE '%".$query."%'";
-$result = $connection->query($sql);
-
-if ($result->num_rows > 0) {
-    // output data of each row
-    while($row = $result->fetch_assoc()) {
-        echo "id: " . $row["id"]. "; username: " . $row["username"]. "<br>";
-    }
-} else {
-    echo "0 results";
-}
-
+  if ($result->num_rows > 0) {
+      // output data of each row
+      while ($row = mysqli_fetch_assoc($result)) {
+          echo "ID: " . $row["id"]. "; username: " . $row["username"];
+          echo  nl2br (" \n ");
+      }
+  } else {
+      echo "0 results";
+  }
 
 }
 ?>
 
-
-
-
-
 <h2>Find user</h2>
 
 <form method="post">
-  <label for="username">username</label>
+  <label for="username">Username</label>
   <input type="text" id="username" name="username">
   <input type="submit" name="submit" value="View Results">
 </form>

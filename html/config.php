@@ -7,8 +7,8 @@
 
 $host       = "localhost";
 $username   = "root";
-$password   = "root";
-$dbname     = "test"; // will use later
+$password   = "password";
+$dbname     = "bikeParking"; // will use later
 $dsn        = "mysql:host=$host;dbname=$dbname"; // will use later
 
 

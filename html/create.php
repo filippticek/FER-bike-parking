@@ -1,4 +1,4 @@
-<?php
+<?php require "header.php";
 /**
   * Use an HTML form to create a new entry in the
   * users table.

@@ -1,6 +1,4 @@
 <?php include "header.php";
-  
-
 ?>
 
 <ul>

@@ -1,4 +1,4 @@
-<?php
+<?php require "header.php";
 
 $json = '{
     "reader": "nfc",
@@ -82,4 +82,5 @@ if ($method == 'POST') {
 
 // close mysql connection
 mysqli_close($link);
+require "footer.php"; 
 ?>

@@ -22,9 +22,10 @@
 
 # Dump of table readerManagers
 # ------------------------------------------------------------
-
-# DROP TABLE IF EXISTS `readerManagers`;
 CREATE DATABASE bikeParking;
+USE bikeParking;
+DROP TABLE IF EXISTS `readerManagers`;
+
 
 CREATE TABLE `readerManagers` (
   `id` int(11) unsigned NOT NULL AUTO_INCREMENT,

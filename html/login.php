@@ -1,26 +1,40 @@
 <?php
-   include("config.php");
-   session_start();
+ session_start();
+    require "header.php";
+
+
 
    if($_SERVER["REQUEST_METHOD"] == "POST") {
       // username and password sent from form
 
-      $myusername = mysqli_real_escape_string($db,$_POST['username']);
-      $mypassword = mysqli_real_escape_string($db,$_POST['password']);
+      $myusername = $_POST['username'];
+      $mypassword = $_POST['password'];
 
-      $sql = "SELECT id FROM test.admin WHERE username = '$myusername' and password = '$mypassword'";
-      $result = mysqli_query($db,$sql);
-      $row = mysqli_fetch_array($result,MYSQLI_ASSOC);
+
+      // connect to the mysql database
+      $link = mysqli_connect('localhost', 'root', 'password', 'bikeParking');
+      mysqli_set_charset($link,'utf8');
+
+
+
+      $sql = "SELECT isadmin, ismanager FROM users WHERE username = '$myusername' and password = '$mypassword'";
+      $result = mysqli_query($link,$sql);
+      $row = mysqli_fetch_assoc($result);
+
       $active = $row['active'];
 
       $count = mysqli_num_rows($result);
       // If result matched $myusername and $mypassword, table row must be 1 row
-      if($count == 1) {
-         //session_register("myusername");
+      if($count == 1 && $row["ismanager"]) {
          $_SESSION['login_user'] = $myusername;
+         header("location: managerPanel.php");
+      }
+      if($count == 1 && $row["isadmin"]) {
+         $_SESSION['login_user'] = $myusername;
+         header("location: adminPanel.php");
+      }
 
-         header("location: index.php");
-      }else {
+      else {
          $error = "Your Login Name or Password is invalid, count = $count";
       }
    }

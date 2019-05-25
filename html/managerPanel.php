@@ -17,11 +17,10 @@
 
         <nav id="sidebar">
           <div class="widget">
-            <h3>Admin panel</h3>
+            <h3>Manager panel</h3>
             <ul>
-            <li><a href="create.php"><strong>Add user</strong></a></li>
-            <li><a href="read.php"><strong>Find user</strong></a></li>
             <li><a href="addTag.php"><strong>Add tag</strong></a></li>
+
             </ul>
           </div>
         </nav>

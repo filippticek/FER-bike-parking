@@ -1,4 +1,4 @@
-<?php require "header.php";
+<?php
 
 //default data and set data
 $json = '{
@@ -44,5 +44,5 @@ if($method == 'POST'){
   mysqli_close($link);
 }
 
-require "footer.php";
+
 ?>

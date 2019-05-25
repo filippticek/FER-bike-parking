@@ -49,7 +49,7 @@ if ($method == 'POST') {
   echo mysqli_insert_id($link);
 
 } else {
-  echo "rows: " + mysqli_affected_rows($link);
+  echo "rows: " . mysqli_affected_rows($link);
 }
 
 

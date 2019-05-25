@@ -63,7 +63,7 @@
        <header id="header">
          <div id="header-inner">
            <div id="logo">
-             <h1><a href="#">FER<span>Logo</span></a></h1>
+             <h1><img src="logo.png" height="70"></h1>
            </div>
            <div id="top-nav">
              <ul>

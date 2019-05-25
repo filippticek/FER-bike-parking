@@ -25,14 +25,15 @@
 
       $count = mysqli_num_rows($result);
       // If result matched $myusername and $mypassword, table row must be 1 row
-      if($count == 1 && $row["isadmin"]) {
-         $_SESSION['login_user'] = $myusername;
-         header("location: adminPanel.php");
-      }
       if($count == 1 && $row["ismanager"]) {
          $_SESSION['login_user'] = $myusername;
          header("location: managerPanel.php");
       }
+      if($count == 1 && $row["isadmin"]) {
+         $_SESSION['login_user'] = $myusername;
+         header("location: adminPanel.php");
+      }
+
       else {
          $error = "Your Login Name or Password is invalid, count = $count";
       }

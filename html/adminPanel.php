@@ -21,7 +21,6 @@
             <ul>
             <li><a href="create.php"><strong>Add user</strong></a></li>
             <li><a href="read.php"><strong>Find user</strong></a></li>
-            <li><a href="addTag.php"><strong>Add tag</strong></a></li>
             </ul>
           </div>
         </nav>

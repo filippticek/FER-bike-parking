@@ -2,6 +2,7 @@
 if (!isset($_SESSION['login_user'])){
   header('Location: login.php');
 }
+
 /**
   * Use an HTML form to create a new entry in the
   * users table.
@@ -9,16 +10,17 @@ if (!isset($_SESSION['login_user'])){
 if (isset($_POST['submit'])) {
 
 
-    $new_user = array(
-      "username" => $_POST['username'],
-      "password"  => $_POST['password'],
-      "email"     => $_POST['email'],
-      "isadmin"   => $_POST['isadmin'],
-      "ismanager"  => $_POST['ismanager']
+    $new_tag = array(
+      "id1" => $_POST['id1'],
+      "id2"  => $_POST['id2'],
+      "type"     => $_POST['type'],
+      "username"   => $_POST['username'],
+      "name"  => $_POST['name'],
+      "surname"  => $_POST['surname']
     );
 
     $sql = sprintf("INSERT INTO %s (%s) values (%s)",
-    "users", implode(", ", array_keys($new_user)),"'" . implode("', '", array_values($new_user)) . "'" );
+    "tags", implode(", ", array_keys($new_tag)),"'" . implode("', '", array_values($new_tag)) . "'" );
 
     $link = mysqli_connect('localhost', 'root', 'password', 'bikeParking');
     mysqli_set_charset($link,'utf8');
@@ -26,10 +28,8 @@ if (isset($_POST['submit'])) {
     $result = mysqli_query($link,$sql);
     $row = mysqli_fetch_assoc($result);
 
+
 }
-
-
-
 
 ?>
 
@@ -40,24 +40,25 @@ if (isset($_POST['submit'])) {
         <main id="contentbar">
           <div class="article">
             <p>
-            <h2>Add a user</h2>
+            <h2>Add a tag</h2>
 
             <form method="post">
+              <label for="id1">ID1</label>
+              <input type="text" name="id1" required id="id1">
+              <label for="id2">ID2</label>
+              <input type="text" name="id2" required id="id2">
+
+              <label for="type">Type</label>
+              <input type="text" name="type" required id="type">
+
               <label for="username">Username</label>
               <input type="text" name="username" required id="username">
-              <label for="password">Password</label>
-              <input type="text" name="password" required id="password">
 
-              <label for="email">Email Address</label>
-              <input type="text" name="email" required id="email">
+              <label for="name">Name</label>
+              <input type="text" name="name" required id="name">
 
-              <label for="isadmin">Admin</label>
-              <input type='hidden' value='0' name='isadmin'>
-              <input type="checkbox" name="isadmin" value="1" id="isadmin">
-
-              <label for="ismanager">Manager</label>
-              <input type='hidden' value='0' name='ismanager'>
-              <input type="checkbox" name="ismanager" value="1" id="ismanager">
+              <label for="surname">Surname</label>
+              <input type="text" name="surname" required id="surname">
 
               <label for="submit"></label>
               <input type="submit" name="submit" value="Submit">
@@ -65,8 +66,9 @@ if (isset($_POST['submit'])) {
             <?php
             if (isset($_POST['submit'])) {
             //print results
-            echo "USER INSERTED ";
+            echo "TAG INSERTED ";
             echo  nl2br (" \n ");
+
           }
             ?>
             </p>

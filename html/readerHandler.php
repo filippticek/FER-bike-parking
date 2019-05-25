@@ -2,7 +2,7 @@
 
 //default data and set data
 $json = '{
-    "reader": "nfc",
+    "reader": "NFC",
     "id": "E20034120138F20010D5CFAF"
 }';
 $json = file_get_contents('php://input');
@@ -12,6 +12,11 @@ echo $input->reader;
 echo  nl2br (" \n ");
 echo $input->id;
 echo  nl2br (" \n ");
+$type = 1;
+
+if($input->id == "NFC"){
+    $type = 0;
+}
 
 // read request
 $method = $_SERVER["REQUEST_METHOD"];
@@ -23,7 +28,7 @@ if($method == 'POST'){
   mysqli_set_charset($link,'utf8');
 
   // create SQL query
-  $sql = "SELECT * FROM tags WHERE id1='$input->id'";
+  $sql = "SELECT * FROM tags WHERE id1='$input->id' AND type='$type'";
   $result = mysqli_query($link,$sql);
   $row = mysqli_fetch_assoc($result);
 

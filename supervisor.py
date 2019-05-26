@@ -8,65 +8,42 @@
 # TODO add relay triggering
 
 
-
-import web
 import json
-import requests
 
-NFC = "nfc"
-UHF = "uhf"
+import requests
+import web
+
+EXTERNAL_SERVER = "http://167.99.129.57:8001/readerHandler.php"
 
 urls = (
-    '/uhf', 'uhf',
-    '/nfc', 'nfc'
+    '/reader', 'reader'
 )
 
-class uhf:
+
+# TODO mozda stavit jedan endpoint i da onda handler app šalje u JSONu koji citac salje podatke?
+
+class reader:
     def POST(self):
         post_data = json.loads(web.data())
-        db_status = check_database(UHF, post_data['key'])
+        db_status = check_database(post_data['reader'], post_data['id'])
         if db_status:
             open_door()
 
         return db_status
 
-class nfc:
-    def POST(self):
-        post_data = json.loads(web.data())
-        db_status = check_database(NFC, post_data['key'])
-        if db_status:
-            open_door()
 
-        return db_status
-        
+def check_database(reader="", id=""):
+    if reader and id:
+        data = json.dumps({'reader': reader, 'id': id})
+        r = requests.post(EXTERNAL_SERVER, data=data)
+        return r.status_code
+    return 401
 
-
-
-def check_database(type="", key=""):
-    if key == NFC and key:
-        return request_nfc_access(key)
-    if key == UHF and key:
-        return request_uhf_access(key)
-
-    return 500
-
-def request_nfc_access(key=""):
-    if key:
-        #r = requests.post(...)
-        pass
-    return r.status_code
-
-def request_uhf_access(key=""):
-    print(key)
-    if key:
-        #r = requests.post(...)
-        pass
-    return r.status_code
 
 def open_door():
     '''
     import RPi.GPIO as GPIO
-    
+
     GPIO.setmode(GPIO.BCM)  # GPIO Numbers instead of board numbers
     RELAY1 = 17
     GPIO.setup(RELAY1, GPIO.OUT)  # GPIO Assign mode
@@ -74,6 +51,7 @@ def open_door():
     GPIO.output(RELAY1, GPIO.HIGH)  # on
     '''
     pass
+
 
 if __name__ == "__main__":
     app = web.application(urls, globals())

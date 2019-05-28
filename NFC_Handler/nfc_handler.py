@@ -1,17 +1,15 @@
 #!/usr/bin/env python3
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import socket
+import json
+import request
 
 HOST_NAME = '192.168.7.191'
 PORT_NUMBER = 80
 
-SERVER_IP = 'localhost'
-SERVER_PORT = 4000
+SUPERVISOR_ADDRESS = "http://localhost:8080/nfc"
 
-#This class will handles any incoming request from
-#the browser
 class Server(BaseHTTPRequestHandler):
-	#Handler for the GET requests
 	def do_GET(self):
 		self.send_response(200)
 		self.send_header('Content-type','text/html')
@@ -28,12 +26,8 @@ def handle_nfc(url):
 		send_response(uid_len, uid)
 
 def send_response(uid_len, uid):
-	serve = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-	serve.connect((SERVER_IP, SERVER_PORT))
-	response = 'uidLen=' + str(uid_len) + '&uid=' + uid + '&\r\n'
-	serve.send(response.encode('utf-8'))
-	serve.close()
-
+	response = json.dumps({'reader': 'NFC', 'id': uid})
+	requests.post(SUPERVISOR_ADDRESS, data=response)
 
 def get_uid(url):
 	if "ulen" in url:
@@ -44,12 +38,9 @@ def get_uid(url):
 	else:
 		return (False, False)
 try:
-	#Create a web server and define the handler to manage the
-	#incoming request
 	server = HTTPServer((HOST_NAME, PORT_NUMBER), Server)
 	print ('Started httpserver on port ' , PORT_NUMBER)
 
-	#Wait forever for incoming http requests
 	server.serve_forever()
 
 except KeyboardInterrupt:

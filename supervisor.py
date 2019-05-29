@@ -24,9 +24,10 @@ urls = (
 
 class reader:
     def POST(self):
-        post_data = json.loads(web.data())
+        print(web.data().decode('utf-8'))
+        post_data = json.loads(web.data().decode('utf-8'))
         db_status = check_database(post_data['reader'], post_data['id'])
-        if db_status:
+        if db_status == 200:
             open_door()
 
         return db_status
@@ -36,11 +37,14 @@ def check_database(reader="", id=""):
     if reader and id:
         data = json.dumps({'reader': reader, 'id': id})
         r = requests.post(EXTERNAL_SERVER, data=data)
+        print(data)
+        print(r.status_code)
         return r.status_code
     return 401
 
 
 def open_door():
+    print("door opening")
     '''
     import RPi.GPIO as GPIO
 

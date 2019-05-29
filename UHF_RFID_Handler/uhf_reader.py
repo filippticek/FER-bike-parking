@@ -54,7 +54,7 @@ class UHFReader:
 
   def parse_ext_read(self, response):
     if not self.check_cmd_id_correct(response, '15'): return {'tid': ''}
-    tid = response[8:-4]
+    tid = response[8:32]
     return {'tid': tid}
 
   def _calculate_len(self, data_array):

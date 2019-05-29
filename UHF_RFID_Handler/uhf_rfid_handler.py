@@ -8,7 +8,7 @@ import serial
 from gpiozero import DigitalInputDevice
 from uhf_reader import UHFReader
 
-SUPERVISOR_ADDRESS = "http://localhost:8080/uhf"
+SUPERVISOR_ADDRESS = "http://localhost:8080/reader"
 
 ser = serial.Serial(
     port='/dev/ttyUSB0',
@@ -62,7 +62,6 @@ def check_access(response):
 
 
 def request_tid(response):
-    print("got epc")
     epc = uhf.parse_single_tag_response(response)['epc']
     length = hex(len(epc) // 4)[2:]
     return uhf.ext_read(enum='0' + length, epc=epc)
@@ -87,9 +86,10 @@ def start_workflow():
         i -= 1
 
 
-pir = DigitalInputDevice(4)
+#pir = DigitalInputDevice(4)
 
 while True:
-    pir.when_activated = start_workflow
+    start_workflow()
+    #pir.when_activated = start_workflow
 
 ser.close()

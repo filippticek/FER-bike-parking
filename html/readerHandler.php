@@ -21,10 +21,10 @@ if($input->id == "NFC"){
 // read request
 $method = $_SERVER["REQUEST_METHOD"];
 
-if($method == 'POST'){
+if($method == 'POST') {
 
   // connect to the mysql database
-  $link = mysqli_connect('localhost', 'root', 'password', 'bikeParking');
+  $link = mysqli_connect("127.0.0.1", "", "", "bikeParking");
   mysqli_set_charset($link,'utf8');
 
   // create SQL query

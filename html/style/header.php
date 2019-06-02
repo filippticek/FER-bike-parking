@@ -67,10 +67,7 @@
            </div>
            <div id="top-nav">
              <ul>
-             <li><a href="#">About</a></li>
-             <li><a href="#">Contact</a></li>
-             <li><a href="#">FAQ</a></li>
-             <li><a href="logout.php">Logout</a></li>
+             <li><a href="logout.php">Odjavi se</a></li>
              </ul>
            </div>
            <div class="clr"></div>
@@ -78,7 +75,7 @@
        </header>
        <div class="feature">
          <div class="feature-inner">
-         <h1>Bike Parking</h1>
+         <h1>FER-ov parking za bicikle</h1>
          </div>
        </div>
 

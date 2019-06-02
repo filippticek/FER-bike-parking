@@ -4,8 +4,8 @@
       <div id="footerblurb-inner">
 
         <div class="column">
-          <h2><span>Heading</span></h2>
-          <p>lorem ipsum</p>
+          <h2><span> </span></h2>
+          <p></p>
         </div>
 
 
@@ -14,7 +14,7 @@
     </div>
     <footer id="footer">
       <div id="footer-inner">
-        <p>&copy; Copyright <a href="#">FER</a> &#124; <a href="#">Terms of Use</a> &#124; <a href="#">Privacy Policy</a></p>
+        <p>&copy; Copyright <a href="#">FER</a> </p>
         <div class="clr"></div>
       </div>
     </footer>

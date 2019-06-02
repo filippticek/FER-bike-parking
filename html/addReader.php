@@ -13,16 +13,13 @@ if (isset($_POST['submit'])) {
 
 
     $new_tag = array(
-      "id1" => $_POST['id1'],
-      "id2"  => $_POST['id2'],
+      "id"  => $_POST['id'],
       "type"     => $_POST['type'],
-      "username"   => $_POST['username'],
       "name"  => $_POST['name'],
-      "surname"  => $_POST['surname']
     );
 
     $sql = sprintf("INSERT INTO %s (%s) values (%s)",
-    "tags", implode(", ", array_keys($new_tag)),"'" . implode("', '", array_values($new_tag)) . "'" );
+    "readers", implode(", ", array_keys($new_tag)),"'" . implode("', '", array_values($new_tag)) . "'" );
 
     $link = mysqli_connect('localhost', 'root', 'password', 'bikeParking');
     mysqli_set_charset($link,'utf8');
@@ -42,25 +39,18 @@ if (isset($_POST['submit'])) {
         <main id="contentbar">
           <div class="article">
             <p>
-            <h2>Add a tag</h2>
+            <h2>Add a reader</h2>
 
             <form method="post">
-              <label for="id1">ID1</label>
+              <label for="id1">ID</label>
               <input type="text" name="id1" required id="id1">
-              <label for="id2">ID2</label>
-              <input type="text" name="id2" required id="id2">
 
               <label for="type">Type</label>
               <input type="text" name="type" required id="type">
 
-              <label for="username">Username</label>
-              <input type="text" name="username" required id="username">
-
               <label for="name">Name</label>
               <input type="text" name="name" required id="name">
 
-              <label for="surname">Surname</label>
-              <input type="text" name="surname" required id="surname">
 
               <label for="submit"></label>
               <input type="submit" name="submit" value="Submit">
@@ -68,7 +58,7 @@ if (isset($_POST['submit'])) {
             <?php
             if (isset($_POST['submit'])) {
             //print results
-            echo "TAG INSERTED ";
+            echo "READER INSERTED ";
             echo  nl2br (" \n ");
 
           }

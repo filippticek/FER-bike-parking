@@ -1,13 +1,3 @@
-<!-- DataTables CSS library -->
-<link rel="stylesheet" type="text/css" href="DataTables/datatables.min.css"/>
-
-<!-- jQuery library -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
-
-<!-- DataTables JS library -->
-<script type="text/javascript" src="DataTables/datatables.min.js"></script>
-
-
 <?php
  session_start();
     require "style/header.php";
@@ -31,8 +21,8 @@
           <div class="widget">
             <h3>Admin panel</h3>
             <ul>
-            <li><a href="create.php"><strong>Dodaj korisnika</strong></a></li>
-          <li><a href="addTag.php"><strong>Dodaj tag</strong></a></li>
+            <li><a href="addUser.php"><strong>Dodaj korisnika</strong></a></li>
+            <li><a href="addTag.php"><strong>Dodaj tag</strong></a></li>
             <li><a href="addReader.php"><strong>Dodaj čitač</strong></a></li>
             </ul>
           </div>

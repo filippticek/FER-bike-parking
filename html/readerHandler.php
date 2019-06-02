@@ -8,14 +8,13 @@ $json = '{
 $json = file_get_contents('php://input');
 $input = json_decode($json);
 
-echo $input->reader;
-echo  nl2br (" \n ");
-echo $input->id;
-echo  nl2br (" \n ");
+echo $input->reader . "\n";
+echo $input->id . "\n";
+
 $type = 1;
 
-if($input->id == "NFC"){
-    $type = 0;
+if($input->reader == "NFC"){
+    $type = 1;
 }
 
 // read request
@@ -24,7 +23,7 @@ $method = $_SERVER["REQUEST_METHOD"];
 if($method == 'POST') {
 
   // connect to the mysql database
-  $link = mysqli_connect("127.0.0.1", "", "", "bikeParking");
+  $link = mysqli_connect("127.0.0.1", "root", "password", "bikeParking");
   mysqli_set_charset($link,'utf8');
 
   // create SQL query
@@ -33,9 +32,9 @@ if($method == 'POST') {
   $row = mysqli_fetch_assoc($result);
 
   //print results
-  echo "rezultat: ";
-  echo mysqli_num_rows($result);
-  echo  nl2br (" \n ");
+  echo "rezultat: " . mysqli_num_rows($result) ."\n" ;
+
+
 
   // set resonse codes
   if (mysqli_num_rows($result)==1) {

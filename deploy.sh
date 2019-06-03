@@ -4,11 +4,11 @@ cd ~
 cd FER-bike-parking/
 
 # clone repo
-git pull https://$TOKEN:x-oauth-basic@github.com/filippticek/FER-bike-parking.git
+git pull https://github.com/filippticek/FER-bike-parking.git
 status=$?
 if [[ $status -eq 128 ]];
 then
-	git clone https://$TOKEN:x-oauth-basic@github.com/filippticek/FER-bike-parking.git
+	git clone https://github.com/filippticek/FER-bike-parking.git
 fi
 
 cd FER-bike-parking/
@@ -26,7 +26,7 @@ pip install supervisor
 chmod +x network_setup.sh
 ./network_setup.sh
 
-# setup startup script?
+# setup startup script
 crontab -l > mycron
 echo "@reboot /home/pi/FER-bike-parking/venv/bin/supervisord" > mycron
 crontab mycron

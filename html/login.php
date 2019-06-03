@@ -1,6 +1,6 @@
 <?php
  session_start();
-    require "header.php";
+    require "style/header.php";
 
 
 
@@ -27,61 +27,40 @@
       // If result matched $myusername and $mypassword, table row must be 1 row
       if($count == 1 && $row["ismanager"]) {
          $_SESSION['login_user'] = $myusername;
-         header("location: managerPanel.php");
+         header("location: index.php");
       }
       if($count == 1 && $row["isadmin"]) {
          $_SESSION['login_user'] = $myusername;
-         header("location: adminPanel.php");
+         header("location: index.php");
       }
 
       else {
-         $error = "Your Login Name or Password is invalid, count = $count";
+         $error = "Korisničko ime ili lozinka nisu ispravni";
       }
    }
+
 ?>
+
 <html>
 
-   <head>
-      <title>Login Page</title>
-
-      <style type = "text/css">
-         body {
-            font-family:Arial, Helvetica, sans-serif;
-            font-size:14px;
-         }
-         label {
-            font-weight:bold;
-            width:100px;
-            font-size:14px;
-         }
-         .box {
-            border:#666666 solid 1px;
-         }
-      </style>
-
-   </head>
-
-   <body bgcolor = "#FFFFFF">
-
-      <div align = "center">
-         <div style = "width:300px; border: solid 1px #333333; " align = "left">
-            <div style = "background-color:#333333; color:#FFFFFF; padding:3px;"><b>Login</b></div>
-
-            <div style = "margin:30px">
-
+     <link rel="stylesheet" type="text/css" href="style/style.css" />
+     <div id="content" >
+         <main id="login" margin="auto">
+             <p>
+             <h2>Prijava</h2>
                <form action = "" method = "post">
-                  <label>UserName  :</label><input type = "text" name = "username" class = "box"/><br /><br />
-                  <label>Password  :</label><input type = "password" name = "password" class = "box" /><br/><br />
-                  <input type = "submit" value = " Submit "/><br />
+                  <label>Korisničko ime  :</label><input type = "text" name = "username" class = "box"/><br />
+                  <label>Lozinka  :</label><input type = "password" name = "password" class = "box" /><br/>
+                  <h3><?php echo $error ?> </h3>
+                  <input type = "submit" value = " Prijava "/><br />
+
                </form>
+             </p>
 
-               <div style = "font-size:11px; color:#cc0000; margin-top:10px"><?php echo $error; ?></div>
-
-            </div>
-
-         </div>
-
+         </main>
       </div>
 
-   </body>
 </html>
+
+
+ <?php require "style/footer.php"; ?>

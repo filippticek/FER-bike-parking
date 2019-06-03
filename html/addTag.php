@@ -1,6 +1,6 @@
 <?php session_start();
 
-require "header.php";
+require "style/header.php";
 if (!isset($_SESSION['login_user'])){
   header('Location: login.php');
 }
@@ -36,13 +36,14 @@ if (isset($_POST['submit'])) {
 ?>
 
 <html>
+<link rel="stylesheet" type="text/css" href="style/style.css" />
     <div id="content">
       <div id="content-inner">
 
         <main id="contentbar">
           <div class="article">
             <p>
-            <h2>Add a tag</h2>
+            <h2>Dodaj tag</h2>
 
             <form method="post">
               <label for="id1">ID1</label>
@@ -50,20 +51,20 @@ if (isset($_POST['submit'])) {
               <label for="id2">ID2</label>
               <input type="text" name="id2" required id="id2">
 
-              <label for="type">Type</label>
+              <label for="type">Tip</label>
               <input type="text" name="type" required id="type">
 
-              <label for="username">Username</label>
+              <label for="username">Korisničko ime</label>
               <input type="text" name="username" required id="username">
 
-              <label for="name">Name</label>
+              <label for="name">Ime</label>
               <input type="text" name="name" required id="name">
 
-              <label for="surname">Surname</label>
+              <label for="surname">Prezime</label>
               <input type="text" name="surname" required id="surname">
 
               <label for="submit"></label>
-              <input type="submit" name="submit" value="Submit">
+              <input type="submit" name="submit" value="Unesi">
             </form>
             <?php
             if (isset($_POST['submit'])) {
@@ -79,9 +80,9 @@ if (isset($_POST['submit'])) {
 
         <nav id="sidebar">
           <div class="widget">
-            <h3>Left heading</h3>
+            <h3>Admin panel</h3>
             <ul>
-            <li><a href="index.php">Back to home</a></li>
+            <li><a href="index.php">Naslovnica</a></li>
             </ul>
           </div>
         </nav>
@@ -94,4 +95,4 @@ if (isset($_POST['submit'])) {
 
 
 
-<?php require "footer.php"; ?>
+<?php require "style/footer.php"; ?>

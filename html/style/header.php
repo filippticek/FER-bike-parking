@@ -4,6 +4,7 @@
  <head>
    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
    <title>FER Bike Parking</title>
+
    <style type="text/css">
      html, #page { padding:0; margin:0;}
      body { margin:0; padding:0; width:100%; color:#959595; font:normal 12px/2.0em Sans-Serif;}
@@ -44,7 +45,7 @@
      #content #sidebar .widget ul li { padding:4px 0; width:185px;}
      #content #sidebar .widget ul li a { color:blue; text-decoration:none; margin-left:-16px; padding:4px 8px 4px 16px;}
      #content #sidebar .widget ul li a:hover { color:#d3d3f9; font-weight:bold; text-decoration:none;}
-
+     #content #login { margin:0; padding:0; float:right; width:1020px;}
      /* Footerblurb */
      #footerblurb { background:#eee;color:blue;}
      #footerblurb-inner { margin:0 auto; width:970px; padding:10px;background:#d3d3f9;border-bottom-right-radius:15px;border-bottom-left-radius:15px;}
@@ -63,7 +64,7 @@
        <header id="header">
          <div id="header-inner">
            <div id="logo">
-             <h1><img src="logo.png" height="70"></h1>
+             <h1><img src="data/logo.png" height="70"></h1>
            </div>
            <div id="top-nav">
              <ul>

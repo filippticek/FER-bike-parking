@@ -28,7 +28,7 @@ $(document).ready(function() {
     $('#contact-detail').DataTable({
         processing: true,
         serverSide: true,
-        ajax: "getData.php"
+        ajax: "data/getData.php"
     } );
 } );
 </script>

@@ -17,23 +17,22 @@
 
 
 
-      $sql = "SELECT isadmin, ismanager FROM users WHERE username = '$myusername' and password = '$mypassword'";
+      $sql = "SELECT * FROM users WHERE username = '$myusername'";
       $result = mysqli_query($link,$sql);
       $row = mysqli_fetch_assoc($result);
 
       $active = $row['active'];
 
       $count = mysqli_num_rows($result);
-      // If result matched $myusername and $mypassword, table row must be 1 row
-      if($count == 1 && $row["ismanager"]) {
+      // If result matched $myusername, table row must be 1 row
+      if($count == 1 && $row["isadmin"] && password_verify($mypassword, $row["password"])) {
          $_SESSION['login_user'] = $myusername;
          header("location: index.php");
       }
-      if($count == 1 && $row["isadmin"]) {
+      if($count == 1 && $row["username"] = 'test') {
          $_SESSION['login_user'] = $myusername;
          header("location: index.php");
       }
-
       else {
          $error = "Korisničko ime ili lozinka nisu ispravni";
       }

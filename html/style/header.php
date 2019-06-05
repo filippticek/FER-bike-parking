@@ -8,7 +8,8 @@
    <style type="text/css">
      html, #page { padding:0; margin:0;}
      body { margin:0; padding:0; width:100%; color:#202020; font:normal 14px/2.0em Verdana;}
-     h1, h2, h3, h4, h5, h6 {color:#606060;}
+     h1, h3, h4, h5, h6 {color:#505050;}
+     h2 {color:#404040;}
      #page { background:#eee;}
      #header, #footer, #top-nav, #content, #content #contentbar, #content #sidebar { margin:0; padding:0;}
 

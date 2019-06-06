@@ -2,7 +2,6 @@
 <head>
 <title>Datatables</title>
 	<link rel="stylesheet"  href="vendor/DataTables/datatables.min.css">
-	<link rel="stylesheet"  href="style.css">
 	<script src="vendor/jquery/jquery-1.11.2.min.js" type="text/javascript"></script>
     <script src="vendor/DataTables/datatables.min.js" type="text/javascript"></script>
 	<style>

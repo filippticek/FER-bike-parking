@@ -2,12 +2,12 @@
 from http.server import HTTPServer, BaseHTTPRequestHandler
 import socket
 import json
-import request
+import requests
 
 HOST_NAME = '192.168.7.191'
 PORT_NUMBER = 80
 
-SUPERVISOR_ADDRESS = "http://localhost:8080/nfc"
+SUPERVISOR_ADDRESS = "http://localhost:8080/reader"
 
 class Server(BaseHTTPRequestHandler):
 	def do_GET(self):

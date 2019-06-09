@@ -7,7 +7,7 @@
 
    <style type="text/css">
      html, #page { padding:0; margin:0;}
-     body { margin:0; padding:0; width:100%; color:#202020; font:normal 14px/2.0em Verdana;}
+     body { margin:0; padding:0; width:100%; color:#202020; font:normal 16px/2.0em Verdana;}
      h1, h3, h4, h5, h6 {color:#505050;}
      h2 {color:#404040;}
      #page { background:#eee;}
@@ -44,7 +44,7 @@
      #content #sidebar .widget ul { margin:0; padding:0; list-style:none; color:#959595;}
      #content #sidebar .widget ul li { margin:0;}
      #content #sidebar .widget ul li { padding:4px 0; width:185px;}
-     #content #sidebar .widget ul li a { color:#909090; text-decoration:none; margin-left:-16px; padding:4px 8px 4px 16px;}
+     #content #sidebar .widget ul li a { color:#909090; text-decoration:none; margin-left:1px; padding:2px 8px 4px 4px;}
      #content #sidebar .widget ul li a:hover { color:#d3d3f9; font-weight:bold; text-decoration:none;}
      #content #login { margin:0; padding:0; float:right; width:1020px;}
      /* Footerblurb */
@@ -59,13 +59,52 @@
 
      /* Clear both sides to assist with div alignment  */
      .clr { clear:both; padding:0; margin:0; width:100%; font-size:0px; line-height:0px;}
+     .dropbtn {
+  background-color: white;
+  color: #909090;
+  padding: 10px;
+  border: none;
+  font:normal 16px/1.0em Verdana
+}
+
+.dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+.dropdown-content {
+  display: none;
+  position: absolute;
+  background-color: #f1f1f1;
+  min-width: 200px;
+  box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
+  z-index: 1;
+}
+
+.dropdown-content a {
+  color: black;
+  padding: 16px 16px;
+  text-decoration: none;
+  display: block;
+}
+
+.dropdown-content a:hover {
+  background-color: #f1f1f1;
+  min-width: 175px;
+  max-width: 175px;
+}
+
+.dropdown:hover .dropdown-content {display: block;}
+
+.dropdown:hover .dropbtn {background-color: white;}
+
    </style>
-  <link rel="stylesheet" href="css/style.css" />
+  <link rel="stylesheet" href="style/style.css" />
      <div id="page">
        <header id="header">
          <div id="header-inner">
            <div id="logo">
-             <h1><img src="data/logo.png" height="70"></h1>
+             <h1><img src="style/logo.png" height="70"></h1>
            </div>
            <div id="top-nav">
              <ul>

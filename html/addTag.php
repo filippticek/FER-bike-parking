@@ -1,5 +1,6 @@
-<?php session_start();
-
+<?php
+session_start();
+ob_start();
 require "style/header.php";
 if (!isset($_SESSION['login_user'])){
   header('Location: login.php');

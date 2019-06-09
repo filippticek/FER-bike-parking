@@ -1,5 +1,6 @@
 <?php
  session_start();
+ ob_start();
     require "style/header.php";
 
 
@@ -20,7 +21,7 @@
       $sql = "SELECT * FROM users WHERE username = '$myusername'";
       $result = mysqli_query($link,$sql);
       $row = mysqli_fetch_assoc($result);
-
+      $error=null;
       $active = $row['active'];
 
       $count = mysqli_num_rows($result);

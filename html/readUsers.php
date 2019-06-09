@@ -72,7 +72,7 @@ $(document).ready(function(){
     $('#table').DataTable({
         "processing": true,
         "serverSide": true,
-        "ajax" : "pages/getData.php",
+        "ajax" : "pages/getDataUsers.php",
         error: function () {  // error handling code
                     $("#table").css("display", "none");
                 }

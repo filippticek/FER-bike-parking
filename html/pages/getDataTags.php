@@ -18,11 +18,10 @@ $primaryKey = 'id';
 // The `dt` parameter represents the DataTables column identifier.
 $columns = array(
     array( 'db' => 'id', 'dt' => 0 ),
-    array( 'db' => 'id1', 'dt' => 1 ),
-    array( 'db' => 'type', 'dt' => 2 ),
-    array( 'db' => 'username',  'dt' => 3 ),
-    array( 'db' => 'name', 'dt' => 4 ),
-    array( 'db' => 'surname',      'dt' => 5 )
+    array( 'db' => 'type', 'dt' => 1 ),
+    array( 'db' => 'username',  'dt' => 2 ),
+    array( 'db' => 'name', 'dt' => 3 ),
+    array( 'db' => 'surname',      'dt' => 4 )
 
 );
 

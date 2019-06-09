@@ -33,15 +33,15 @@
               <thead>
                   <tr>
                       <th>ID</th>
+                      <th>Type</th>
                       <th>Name</th>
-                      <th>E-mail</th>
                   </tr>
               </thead>
               <tfoot>
                   <tr>
                     <th>ID</th>
+                    <th>Type</th>
                     <th>Name</th>
-                    <th>E-mail</th>
                   </tr>
               </tfoot>
             </table>

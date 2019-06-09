@@ -35,14 +35,14 @@
                   <tr>
                       <th>ID</th>
                       <th>Name</th>
-                      <th>mail</th>
+                      <th>E-mail</th>
                   </tr>
               </thead>
               <tfoot>
                   <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>mail</th>
+                    <th>E-mail</th>
                   </tr>
               </tfoot>
             </table>
@@ -74,7 +74,7 @@ $(document).ready(function(){
         "serverSide": true,
         "ajax" : "pages/getData.php",
         error: function () {  // error handling code
-                    $("#example").css("display", "none");
+                    $("#table").css("display", "none");
                 }
 
     });

@@ -34,15 +34,19 @@
               <thead>
                   <tr>
                       <th>ID</th>
+                      <th>Type</th>
+                      <th>Username</th>
                       <th>Name</th>
-                      <th>mail</th>
+                      <th>Surname</th>
                   </tr>
               </thead>
               <tfoot>
                   <tr>
                     <th>ID</th>
                     <th>Name</th>
-                    <th>mail</th>
+                    <th>Username</th>
+                    <th>Name</th>
+                    <th>Surname</th>
                   </tr>
               </tfoot>
             </table>

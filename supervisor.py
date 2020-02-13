@@ -31,7 +31,9 @@ class reader:
 def check_database(reader="", id=""):
     if reader and id:
         data = json.dumps({'reader': reader, 'id': id})
+        print(data)
         r = requests.post(EXTERNAL_SERVER, data=data)
+        print(r.status_code)
         return r.status_code
     return 401
 

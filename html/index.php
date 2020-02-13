@@ -1,9 +1,10 @@
 <?php
  session_start();
-    require "style/header.php";
-    if (!isset($_SESSION['login_user'])){
-      header('Location: login.php');
+ob_start();
+    if (! isset($_SESSION['login_user'])){
+      header('location:login.php');
     }
+        require "style/header.php";
 ?>
 
 
@@ -21,9 +22,34 @@
           <div class="widget">
             <h3>Admin panel</h3>
             <ul>
-            <li><a href="addUser.php"><strong>Dodaj korisnika</strong></a></li>
-            <li><a href="addTag.php"><strong>Dodaj tag</strong></a></li>
-            <li><a href="addReader.php"><strong>Dodaj čitač</strong></a></li>
+
+            <li>
+              <div class="dropdown">
+                <button class="dropbtn">Korisnici</button>
+                <div class="dropdown-content">
+                  <a href="readUsers.php">Popis korisnika</a>
+                  <a href="addUser.php">Dodaj novog korisnika</a>
+                </div>
+                </div>
+              </li>
+            <li>
+              <div class="dropdown">
+                <button class="dropbtn">Tagovi</button>
+                <div class="dropdown-content">
+                  <a href="readTags.php">Popis tagova</a>
+                  <a href="addTag.php">Dodaj novi tag</a>
+                </div>
+                </div>
+              </li>
+            <li>
+              <div class="dropdown">
+                <button class="dropbtn">Čitači</button>
+                <div class="dropdown-content">
+                  <a href="readReaders.php">Popis čitača</a>
+                  <a href="addReader.php">Dodaj novi čitač</a>
+                </div>
+                </div>
+              </li>
             </ul>
           </div>
         </nav>

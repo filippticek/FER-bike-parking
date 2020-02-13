@@ -13,8 +13,8 @@ echo $input->id . "\n";
 
 $type = 1;
 
-if($input->reader == "NFC"){
-    $type = 1;
+if(strcasecmp($input->reader, "nfc")==0){
+    $type = 0;
 }
 
 // read request
@@ -30,12 +30,8 @@ if($method == 'POST') {
   $sql = "SELECT * FROM tags WHERE id1='$input->id' AND type='$type'";
   $result = mysqli_query($link,$sql);
   $row = mysqli_fetch_assoc($result);
-
   //print results
-  echo "rezultat: " . mysqli_num_rows($result) ."\n" ;
-
-
-
+  //echo "rezultat: " . mysqli_num_rows($result) ."\n" ;
   // set resonse codes
   if (mysqli_num_rows($result)==1) {
     http_response_code(200);
@@ -43,10 +39,8 @@ if($method == 'POST') {
   else {
     http_response_code(401);
   }
-
   // close mysql connection
   mysqli_close($link);
 }
-
 
 ?>

@@ -24,7 +24,7 @@ $columns = array(
 );
 
 // Include SQL query processing class
-require( 'pages/ssp.class.php' );
+require( 'ssp.class.php' );
 
 // Output data as json format
 echo json_encode(

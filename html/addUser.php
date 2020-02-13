@@ -1,5 +1,5 @@
 <?php session_start();
-
+ob_start();
 require "style/header.php";
 
 if (!isset($_SESSION['login_user'])){
@@ -9,14 +9,13 @@ if (!isset($_SESSION['login_user'])){
 if (isset($_POST['submit'])) {
     $new_user = array(
       "username" => $_POST['username'],
-      "password"  => $_POST['password'],
+      "password"  => password_hash($_POST['password'], PASSWORD_BCRYPT),
       "email"     => $_POST['email'],
       "isadmin"   => $_POST['isadmin'],
       "ismanager"  => $_POST['ismanager']
     );
     $sql = sprintf("INSERT INTO %s (%s) values (%s)",
     "users", implode(", ", array_keys($new_user)),"'" . implode("', '", array_values($new_user)) . "'" );
-
     $link = mysqli_connect('localhost', 'root', 'password', 'bikeParking');
     mysqli_set_charset($link,'utf8');
 

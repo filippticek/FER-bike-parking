@@ -12,6 +12,7 @@ then
 fi
 
 cd FER-bike-parking/
+git branch test
 
 # setup virtual env
 sudo pip3 install virtualenv
@@ -28,7 +29,7 @@ chmod +x network_setup.sh
 
 # setup startup script
 crontab -l > mycron
-echo "@reboot /home/pi/FER-bike-parking/venv/bin/supervisord" > mycron
+echo "@reboot /home/pi/FER-bike-parking/./network_setup.sh && /home/pi/FER-bike-parking/venv/bin/supervisord" > mycron
 crontab mycron
 rm mycron
 

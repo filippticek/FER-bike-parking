@@ -11,7 +11,7 @@ import json
 import requests
 import web
 
-EXTERNAL_SERVER = "http://167.99.129.57:8001/readerHandler.php"
+EXTERNAL_SERVER = "http://0.0.0.0:8000/asd"
 
 urls = (
     '/reader', 'reader'

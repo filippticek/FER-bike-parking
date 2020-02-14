@@ -57,6 +57,7 @@ def get_tid(response):
 
 def check_access(response):
     tid = get_tid(response)
+    print(tid)
     req_data = json.dumps({'reader': 'UHF', 'id': tid})
     requests.post(SUPERVISOR_ADDRESS, data=req_data)
 

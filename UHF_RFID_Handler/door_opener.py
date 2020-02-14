@@ -80,9 +80,10 @@ def start_workflow():
     i -= 1
 
 
-pir = DigitalInputDevice(4, pull_up=False)
 
 while True:
-  pir.when_activated = start_workflow
+  start_workflow()
+  time.sleep(2)
+  #pir.when_activated = start_workflow
 
 ser.close()

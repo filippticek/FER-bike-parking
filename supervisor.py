@@ -11,7 +11,7 @@ import json
 import requests
 import web
 
-EXTERNAL_SERVER = "http://0.0.0.0:8000/asd"
+EXTERNAL_SERVER = "http://vukovic-art.com/FERaccess/access-chk.php"
 
 urls = (
     '/reader', 'reader'

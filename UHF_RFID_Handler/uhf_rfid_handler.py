@@ -91,6 +91,7 @@ def start_workflow():
 
 while True:
     start_workflow()
+    time.sleep(1)
     #pir.when_activated = start_workflow
 
 ser.close()

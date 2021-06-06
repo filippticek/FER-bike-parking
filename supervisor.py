@@ -15,8 +15,8 @@ from gpiozero import LED
 
 EXTERNAL_SERVER = "http://vukovic-art.com/FERaccess/access-chk.php"
 
-BUZZER = LED(17)
-RELAY = LED(18)
+BUZZER = 17
+RELAY = 18
 
 urls = (
     '/reader', 'reader'
@@ -25,14 +25,16 @@ urls = (
 
 class reader:
     def POST(self):
+        buzzer = LED(BUZZER)
+        relay = LED(RELAY)
         post_data = json.loads(web.data().decode('utf-8'))
         db_status = check_database(post_data['reader'], post_data['id'])
         if db_status == 200:
             # Unncomment the next line and comment the piezo_true() when relay is attached
-            # open_door()
-            piezo_true()
+            # open_door(buzzer,relay)
+            piezo_true(buzzer)
         else:
-            piezo_false()
+            piezo_false(buzzer)
 
         return db_status
 
@@ -46,25 +48,25 @@ def check_database(reader="", id=""):
         return r.status_code
     return 401
 
-def piezo_false():
-    BUZZER.on()
+def piezo_false(buzzer):
+    buzzer.on()
     sleep(0.2)
-    BUZZER.off()
+    buzzer.off()
     sleep(0.2)
 
-def piezo_true():
-    BUZZER.on()
+def piezo_true(buzzer):
+    buzzer.on()
     sleep(1)
-    BUZZER.off()
+    buzzer.off()
     sleep(1)
 
-def open_door():
+def open_door(buzzer, relay):
     print("door opening")
-    BUZZER.on()
-    RELAY.on()
+    buzzer.on()
+    relay.on()
     sleep(1)
-    BUZZER.off()
-    RELAY.off()
+    buzzer.off()
+    relay.off()
     sleep(1)
 
 

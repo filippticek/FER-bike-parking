@@ -13,7 +13,7 @@ import web
 from time import sleep
 from gpiozero import LED
 
-EXTERNAL_SERVER = "http://vukovic-art.com/FERaccess/access-chk.php"
+EXTERNAL_SERVER = ""
 
 BUZZER = 17
 RELAY = 18
@@ -28,15 +28,18 @@ class reader:
         buzzer = LED(BUZZER)
         relay = LED(RELAY)
         post_data = json.loads(web.data().decode('utf-8'))
+        #when external server present remove next 2 lines and uncomment all others
+        open_door(buzzer, relay)
+        return 200
+        """"
         db_status = check_database(post_data['reader'], post_data['id'])
         if db_status == 200:
-            # Unncomment the next line and comment the piezo_true() when relay is attached
-            # open_door(buzzer,relay)
-            piezo_true(buzzer)
+            open_door(buzzer,relay)
         else:
             piezo_false(buzzer)
 
         return db_status
+        """
 
 
 def check_database(reader="", id=""):

@@ -6,7 +6,7 @@ pull_changes () {
 	git pull 
 }
 
-install_dependecies (){
+install_dependecies () {
 	sudo apt install -y supervisor
 	# setup virtual env
 	sudo pip3 install virtualenv
@@ -36,9 +36,18 @@ nfc_uhf_setup () {
 	sudo cp supervisord.conf /etc/supervisor/supervisord.conf
 }
 
-restart_services() {
+restart_services () {
 	# restart supervisor
 	sudo service supervisor restart
+}
+
+print_usage () {
+	echo "Usage: $0 [-a] [-u] [-r]"
+	echo "Supply the following arguments:"
+	echo "      -a for deploying nfc/uhf box"
+	echo "      -u for deploying uhf box"
+	echo "      -r for restarting the service"
+	exit 1
 }
 
 while getopts 'aur' OPTION; do
@@ -59,13 +68,12 @@ while getopts 'aur' OPTION; do
 			pull_changes
 			restart_services
             ;;
-        ?)
-			echo "Usage: $0 [-a] [-u] [-r]"
-			echo "Supply the following arguments:"
-			echo "      -a for deploying nfc/uhf box"
-			echo "      -u for deploying uhf box"
-			echo "      -r for restarting the service"
-            exit 1
+        *)
+			print_usage
 			;;
     esac
 done
+
+if [ $# -eq 0 ]; then
+	print_usage
+fi

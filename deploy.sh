@@ -1,34 +1,5 @@
 #!/bin/bash
 
-while getopts 'aur' OPTION; do
-    case "$OPTION" in
-        a)
-			pull_changes
-			install_dependecies
-			nfc_uhf_setup
-			restart_services
-            ;;
-        u)
-			pull_changes
-			install_dependecies
-			uhf_setup
-			restart_services
-            ;;
-        r)
-			pull_changes
-			restart_services
-            ;;
-        *)
-			echo "Usage: $0 [-a] [-u] [-r]"
-			echo "Supply the following arguments:"
-			echo "      -a for deploying nfc/uhf box"
-			echo "      -u for deploying uhf box"
-			echo "      -r for restarting the service"
-            exit 1
-			;;
-    esac
-done
-
 pull_changes () {
 	cd ~/FER-bike-parking/
 	# pull latest changes
@@ -69,3 +40,32 @@ restart_services() {
 	# restart supervisor
 	sudo service supervisor restart
 }
+
+while getopts 'aur' OPTION; do
+    case "$OPTION" in
+        a)
+			pull_changes
+			install_dependecies
+			nfc_uhf_setup
+			restart_services
+            ;;
+        u)
+			pull_changes
+			install_dependecies
+			uhf_setup
+			restart_services
+            ;;
+        r)
+			pull_changes
+			restart_services
+            ;;
+        *)
+			echo "Usage: $0 [-a] [-u] [-r]"
+			echo "Supply the following arguments:"
+			echo "      -a for deploying nfc/uhf box"
+			echo "      -u for deploying uhf box"
+			echo "      -r for restarting the service"
+            exit 1
+			;;
+    esac
+done

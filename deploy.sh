@@ -59,7 +59,7 @@ while getopts 'aur' OPTION; do
 			pull_changes
 			restart_services
             ;;
-        *)
+        ?)
 			echo "Usage: $0 [-a] [-u] [-r]"
 			echo "Supply the following arguments:"
 			echo "      -a for deploying nfc/uhf box"

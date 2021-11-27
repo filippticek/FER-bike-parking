@@ -9,6 +9,7 @@ from gpiozero import DigitalInputDevice
 from uhf_reader import UHFReader
 
 SUPERVISOR_ADDRESS = "http://localhost:8080/reader"
+TIMEOUT = 1 # Set timeout between two reads
 
 ser = serial.Serial(
     port='/dev/ttyUSB0',
@@ -91,7 +92,7 @@ def start_workflow():
 
 while True:
     start_workflow()
-    time.sleep(1)
+    time.sleep(TIMEOUT)
     #pir.when_activated = start_workflow
 
 ser.close()

@@ -19,27 +19,35 @@ BUZZER = 17
 RELAY = 18
 
 urls = (
-    '/reader', 'reader'
+    '/reader', 'reader',
+    '/buzzer', 'buzzer'
 )
 
 
 class reader:
     def POST(self):
-        buzzer = LED(BUZZER)
         relay = LED(RELAY)
+        #buzzer = LED(BUZZER)
         post_data = json.loads(web.data().decode('utf-8'))
         #when external server present remove next 2 lines and uncomment all others
-        open_door(buzzer, relay)
+        open_door(relay)
         return 200
         """"
         db_status = check_database(post_data['reader'], post_data['id'])
         if db_status == 200:
-            open_door(buzzer,relay)
+            open_door(relay)
         else:
             piezo_false(buzzer)
 
         return db_status
         """
+
+class buzzer:
+    def GET(self):
+        buzzer = LED(BUZZER)
+        piezo_true(buzzer)
+        return 200
+
 
 
 def check_database(reader="", id=""):
@@ -59,18 +67,13 @@ def piezo_false(buzzer):
 
 def piezo_true(buzzer):
     buzzer.on()
-    sleep(1)
+    sleep(0.5)
     buzzer.off()
-    sleep(1)
 
-def open_door(buzzer, relay):
+def open_door(relay):
     print("door opening")
-    buzzer.on()
     relay.on()
-    sleep(1)
-    buzzer.off()
     relay.off()
-    sleep(1)
 
 
 if __name__ == "__main__":

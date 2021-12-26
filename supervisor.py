@@ -67,7 +67,7 @@ def piezo_false(buzzer):
 
 def piezo_true(buzzer):
     buzzer.on()
-    sleep(0.5)
+    sleep(0.1)
     buzzer.off()
 
 def open_door(relay):

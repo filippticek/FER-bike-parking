@@ -4,8 +4,6 @@
 # with the server to check if a card is allowed to open the door
 # and triggers the relay to open the door.
 
-
-
 import json
 
 import requests
@@ -47,8 +45,6 @@ class buzzer:
         buzzer = LED(BUZZER)
         piezo_true(buzzer)
         return 200
-
-
 
 def check_database(reader="", id=""):
     if reader and id:

@@ -10,4 +10,3 @@ button = Button(WARNING, pull_up=False)
 while True:
     button.wait_for_press()
     requests.get(SUPERVISOR_ADDRESS)
-    sleep(0.1)
